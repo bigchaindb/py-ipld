@@ -1,6 +1,6 @@
-from cbor import Tag, dumps
+from cbor import dumps, Tag
 
-from ipld.cbor import marshal, unmarshal, LINK_TAG
+from ipld import LINK_TAG, marshal, unmarshal
 
 
 def test_transform_dict_to_cbor():

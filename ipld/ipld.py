@@ -1,6 +1,6 @@
-import copy
+from copy import deepcopy
 
-from cbor import Tag, dumps, loads
+from cbor import dumps, loads, Tag
 
 
 # NOTE: jbenet plans to register tag 258:
@@ -10,7 +10,7 @@ LINK_SYMBOL = '/'
 
 
 def marshal(json_data):
-    cp_json_data = copy.deepcopy(json_data)
+    cp_json_data = deepcopy(json_data)
 
     def transform(di):
         for k, v in di.items():

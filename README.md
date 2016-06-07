@@ -9,5 +9,5 @@
 
 ## Acknowledgements
 
-Thanks to the folks over at bigchaindb/bigchaindb, from where I stole the configuration of this project.
+Thanks to the folks over at bigchaindb/bigchaindb, from where I took the configuration-setting of this project.
 Also thank you IPFS folks. TODO: Make this bettah with links and stuff.
