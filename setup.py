@@ -10,6 +10,11 @@ tests_require = [
     'pytest-flask',
 ]
 
+dev_require = [
+    'ipdb',
+    'ipython',
+]
+
 setup(
     name="py-ipld",
     version="0.0.1",
@@ -26,4 +31,8 @@ setup(
     ],
     setup_requires=['pytest-runner'],
     tests_require=tests_require,
+    extras_require={
+        'test': tests_require,
+        'dev': dev_require + tests_require,
+    },
 )
