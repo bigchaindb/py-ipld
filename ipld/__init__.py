@@ -1,3 +1,3 @@
-from ipld.ipld import marshal, unmarshal, LINK_TAG, LINK_SYMBOL
+from ipld.ipld import LINK_TAG, LINK_SYMBOL, marshal, multihash, unmarshal
 
-__all_ = ['marshal', 'unmarshal', 'LINK_TAG', 'LINK_SYMBOL']
+__all_ = ['LINK_TAG', 'LINK_SYMBOL', 'marshal', 'multihash', 'unmarshal']

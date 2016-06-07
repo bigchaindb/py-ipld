@@ -1,4 +1,5 @@
 from copy import deepcopy
+from multihash import digest
 
 from cbor import dumps, loads, Tag
 
@@ -48,3 +49,9 @@ def unmarshal(cbor_data):
                 di[k] = transform(v)
         return di
     return transform(json_data)
+
+
+def multihash(data):
+    # NOTE: This is just a utility function to make the usage of this
+    #       library more convenient.
+    return digest(data, 'sha2_256').encode('base58').decode('utf-8')

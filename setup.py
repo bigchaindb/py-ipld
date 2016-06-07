@@ -24,6 +24,7 @@ setup(
     license="Apache-2.0",
     keywords="ipld python ipfs bigchaindb",
     install_requires=[
+        'base58==0.2.2',
         'pymultihash>=0.9.0.dev2',
     ],
     dependency_links=[

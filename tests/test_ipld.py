@@ -1,6 +1,6 @@
 from cbor import dumps, Tag
 
-from ipld import LINK_TAG, marshal, unmarshal
+from ipld import LINK_TAG, marshal, multihash, unmarshal
 
 
 def test_transform_dict_to_cbor():
@@ -83,7 +83,7 @@ def test_transform_cbor_to_dict():
     src = dumps({
         'hello': 'world',
         'num': 1,
-    })
+    }, sort_keys=True)
 
     expected = {
         'num': 1,
@@ -98,7 +98,7 @@ def test_transform_cbor_with_link_to_dict():
         'num': 1,
         'hello': 'world',
         'l1': Tag(LINK_TAG, 'takemedowntotheparadisecity'),
-    })
+    }, sort_keys=True)
 
     expected = {
         'hello': 'world',
@@ -119,7 +119,7 @@ def test_transform_cbor_with_nested_link_to_dict():
         'secret': {
             'l1': Tag(LINK_TAG, 'Ihhh ein Sekret!')
         },
-    })
+    }, sort_keys=True)
 
     expected = {
         'hello': 'world',
@@ -135,3 +135,12 @@ def test_transform_cbor_with_nested_link_to_dict():
     }
 
     assert unmarshal(src) == expected
+
+
+def test_multihashing_cbor():
+    src = dumps({
+        'name': 'hello.txt',
+        'size': 11
+    }, sort_keys=True)
+
+    assert multihash(src) == 'QmQtX5JVbRa25LmQ1LHFChkXWW5GaWrp7JpymN4oPuBSmL'
