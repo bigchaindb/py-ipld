@@ -1,5 +1,8 @@
 # py-ipld
 
+[![codecov](https://codecov.io/gh/bigchaindb/py-ipld/branch/master/graph/badge.svg)](https://codecov.io/gh/bigchaindb/py-ipld)
+[![Build Status](https://travis-ci.org/bigchaindb/py-ipld.svg?branch=master)](https://travis-ci.org/bigchaindb/py-ipld)
+
 > Python implementation of the [IPLD specification](https://github.com/ipfs/specs/tree/master/ipld).
 
 
