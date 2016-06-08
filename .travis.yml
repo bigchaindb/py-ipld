@@ -3,6 +3,7 @@ python:
     - 3.4
     - 3.5
 install:
+    - pip install codecov
     - pip install --process-dependency-links -e .[test]
-script: python -m pytest -v --cov ipld
+script: py.test -v --cov ipld
 after_success: codecov
