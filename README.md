@@ -8,7 +8,7 @@
 
 ## Status
 
-This is a Work-in-Progress. For TODOs, see: #1
+This is a Work-in-Progress. For TODOs, see: [#1](https://github.com/bigchaindb/py-ipld/issues/1)
 
 
 ## Installation
