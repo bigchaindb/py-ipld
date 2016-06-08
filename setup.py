@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 tests_require = [
     'pep8',
@@ -17,6 +17,7 @@ dev_require = [
 
 setup(
     name="py-ipld",
+    packages=find_packages(exclude=['tests*']),
     version="0.0.1",
     author="Tim Daubenschuetz",
     author_email="tim.daubenschuetz@gmail.com",
