@@ -4,5 +4,5 @@ python:
     - 3.5
 install:
     - pip install --process-dependency-links -e .[test]
-script: python -m pytest -v --cov tests
+script: python -m pytest -v --cov ipld
 after_success: codecov
