@@ -25,10 +25,10 @@ setup(
     keywords="ipld python ipfs bigchaindb",
     install_requires=[
         'base58==0.2.2',
-        'pymultihash>=0.9.0.dev2',
+        'pymultihash==0.9.0.dev1',
     ],
     dependency_links=[
-        'git+https://github.com/TimDaub/pymultihash.git@devel#egg=pymultihash-0.9.0.dev2',
+        'git+https://github.com/TimDaub/pymultihash.git@devel#egg=pymultihash-0.9.0.dev1',
     ],
     setup_requires=['pytest-runner'],
     tests_require=tests_require,

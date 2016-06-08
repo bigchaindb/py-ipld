@@ -54,4 +54,5 @@ def unmarshal(cbor_data):
 def multihash(data):
     # NOTE: This is just a utility function to make the usage of this
     #       library more convenient.
+    # NOTE: Not sure why all IPLD implementations use sha2-256...
     return digest(data, 'sha2_256').encode('base58').decode('utf-8')
