@@ -27,10 +27,7 @@ setup(
     install_requires=[
         'cbor==1.0.0',
         'base58==0.2.2',
-        'pymultihash==0.9.0.dev1',
-    ],
-    dependency_links=[
-        'git+https://github.com/TimDaub/pymultihash.git@devel#egg=pymultihash-0.9.0.dev1',
+        'pymultihash==0.8.2',
     ],
     setup_requires=['pytest-runner'],
     tests_require=tests_require,
