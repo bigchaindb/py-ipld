@@ -1,5 +1,6 @@
-from cbor import dumps, Tag
+import pytest
 
+from cbor import dumps, Tag
 from ipld import LINK_TAG, marshal, multihash, unmarshal
 
 
@@ -77,6 +78,19 @@ def test_transformation_doesnt_mutate_input():
     marshal(src)
 
     assert src == expected
+
+
+def test_transform_raise_key_error():
+    src = {
+        'l1': {
+            '/': 'takemedowntotheparadisecity',
+            'badlinksibling': 'icauseakeyerror',
+            'badlinksibling2': 'icauseakeyerror'
+        },
+    }
+
+    with pytest.raises(KeyError):
+        marshal(src)
 
 
 def test_transform_cbor_to_dict():

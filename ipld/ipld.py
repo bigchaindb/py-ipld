@@ -22,7 +22,7 @@ def marshal(json_data):
             # TODO: Support: https://github.com/jbenet/js-multiaddr
             link = di[LINK_SYMBOL]
             di.pop(LINK_SYMBOL, None)
-            if len(di.keys()) > 1:
+            if di:
                 raise KeyError('Links must not have siblings')
             return Tag(LINK_TAG, link)
         return di
