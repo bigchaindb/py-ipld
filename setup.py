@@ -24,6 +24,16 @@ setup(
     description="An IPLD implementation in Python",
     license="Apache-2.0",
     keywords="ipld python ipfs bigchaindb",
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Topic :: Software Development',
+    ],
     install_requires=[
         'cbor==1.0.0',
         'base58==0.2.2',
