@@ -14,7 +14,7 @@ This is a Work-in-Progress. For TODOs, see: [#1](https://github.com/bigchaindb/p
 ## Installation
 
 ```
-$ pip install py-ipld (not yet)
+$ pip install ipld (not yet)
 ```
 
 
