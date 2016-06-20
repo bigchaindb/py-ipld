@@ -18,7 +18,7 @@ def marshal(json_data):
             if isinstance(v, dict):
                 di[k] = transform(v)
 
-        if LINK_SYMBOL in di.keys():
+        if LINK_SYMBOL in di:
             # TODO: Support: https://github.com/jbenet/js-multiaddr
             link = di[LINK_SYMBOL]
             di.pop(LINK_SYMBOL, None)
