@@ -21,6 +21,10 @@ def find_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
+with open('README.rst', encoding='utf-8') as readme:
+    long_description = readme.read()
+
+
 tests_require = [
     'pep8',
     'pyflakes',
@@ -43,6 +47,7 @@ setup(
     author="Tim Daubenschuetz",
     author_email="tim.daubenschuetz@gmail.com",
     description="An IPLD implementation in Python",
+    long_description=long_description,
     license='MIT License',
     keywords="ipld python ipfs bigchaindb",
     classifiers=[
