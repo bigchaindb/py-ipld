@@ -54,7 +54,7 @@ Tests
 
 .. code-block:: bash
 
-    $ pip install --process-dependency-links -e .[dev]
+    $ pip install -e .[dev]
     $ py.test -v
 
 

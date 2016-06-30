@@ -2,6 +2,7 @@ import pytest
 
 from cbor import dumps, Tag
 from ipld import LINK_TAG, marshal, multihash, unmarshal
+from multiaddr import Multiaddr
 
 
 def test_transform_dict_to_cbor():
@@ -146,6 +147,56 @@ def test_transform_cbor_with_nested_link_to_dict():
                 '/': 'Ihhh ein Sekret!',
             },
         },
+    }
+
+    assert unmarshal(src) == expected
+
+
+def test_transform_dict_to_cbor_with_multiaddr():
+    addr1 = Multiaddr('/ip4/127.0.0.1/udp/1234')
+    addr2 = Multiaddr('/ipfs/Qmafmh1Cw3H1bwdYpaaj5AbCW4LkYyUWaM7Nykpn5NZoYL')
+
+    src = {
+        'data': 'hello world',
+        'size': 11,
+        'l1': {
+            '/': str(addr1),
+        },
+        'l2': {
+            '/': str(addr2),
+        }
+    }
+
+    expected = {
+        'data': 'hello world',
+        'size': 11,
+        'l1': Tag(LINK_TAG, addr1.to_bytes()),
+        'l2': Tag(LINK_TAG, addr2.to_bytes()),
+    }
+
+    assert marshal(src) == dumps(expected, sort_keys=True)
+
+
+def test_transform_cbor_to_dict_with_multiaddr():
+    addr1 = Multiaddr('/ip4/127.0.0.1/udp/1234')
+    addr2 = Multiaddr('/ipfs/Qmafmh1Cw3H1bwdYpaaj5AbCW4LkYyUWaM7Nykpn5NZoYL')
+
+    src = dumps({
+        'data': 'hello world',
+        'size': 11,
+        'l1': Tag(LINK_TAG, addr1.to_bytes()),
+        'l2': Tag(LINK_TAG, addr2.to_bytes()),
+    }, sort_keys=True)
+
+    expected = {
+        'data': 'hello world',
+        'size': 11,
+        'l1': {
+            '/': str(addr1),
+        },
+        'l2': {
+            '/': str(addr2),
+        }
     }
 
     assert unmarshal(src) == expected
