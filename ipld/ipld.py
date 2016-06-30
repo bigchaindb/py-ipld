@@ -50,8 +50,19 @@ def unmarshal(cbor_data):
     return transform(json_data)
 
 
-def multihash(data):
-    # NOTE: This is just a utility function to make the usage of this
-    #       library more convenient.
-    # NOTE: Not sure why all IPLD implementations use sha2-256...
-    return digest(data, 'sha2_256').encode('base58').decode('utf-8')
+def multihash(data, fn_name='sha2_256'):
+    """A utility function to make multihashing more convenient
+
+    Args:
+        data (bytes str): Any Python dict that is an output of the
+            `marshal` function
+        fn_name (str): Any of the following string values: 'sha1',
+            'sha2_256', 'sha2_512', 'sha3_512', 'sha3', 'sha3_384',
+            'sha3_256', 'sha3_224', 'shake_128', 'shake_256', 'blake2b',
+            'blake2s'
+
+    Returns:
+        A base58 encoded digest of a hash (encoded in ascii)
+
+    """
+    return digest(data, fn_name).encode('base58').decode('ascii')
