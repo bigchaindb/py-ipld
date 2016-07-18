@@ -1,7 +1,8 @@
 from copy import deepcopy
-from multihash import digest
 
 from cbor import dumps, loads, Tag
+from multiaddr import Multiaddr
+from multihash import digest
 
 
 # NOTE: jbenet plans to register tag 258:
@@ -19,8 +20,13 @@ def marshal(json_data):
                 di[k] = transform(v)
 
         if LINK_SYMBOL in di:
-            # TODO: Support: https://github.com/jbenet/js-multiaddr
             link = di.pop(LINK_SYMBOL)
+
+            try:
+                link = Multiaddr(link).to_bytes()
+            except ValueError:
+                pass
+
             if di:
                 raise KeyError('Links must not have siblings')
             return Tag(LINK_TAG, link)
@@ -35,15 +41,22 @@ def unmarshal(cbor_data):
     json_data = loads(cbor_data)
 
     def transform(di):
-        # NOTE: https://github.com/ipfs/js-ipld/blob/master/src/cbor.js#L81
-        #       Am I right in assuming that this is not supported in IPLD
-        #       anymore, as links cannot have properties themselves?
         for k, v in di.items():
-            # NOTE: Dear Python-experts: Is this safe?
             if isinstance(v, Tag):
-                di[k] = {
-                    LINK_SYMBOL: v.value
-                }
+                link = Multiaddr(bytes_addr=v.value)
+
+                try:
+                    # the __str__ method of Multiaddr could fail
+                    # if wrong values are passed to it (for example,
+                    # any value that is not a bytes list)
+                    link = str(link)
+                except:
+                    link = v.value
+                finally:
+                    di[k] = {
+                        LINK_SYMBOL: link
+                    }
+
             elif isinstance(v, dict):
                 di[k] = transform(v)
         return di
