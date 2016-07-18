@@ -1,5 +1,5 @@
-.. image:: https://img.shields.io/pypi/v/py-ipld.svg
-    :target: https://pypi.python.org/pypi/py-ipld
+.. image:: https://img.shields.io/pypi/v/ipld.svg
+    :target: https://pypi.python.org/pypi/ipld
 .. image:: https://img.shields.io/travis/bigchaindb/py-ipld.svg
     :target: https://travis-ci.org/bigchaindb/py-ipld
 .. image:: https://img.shields.io/codecov/c/github/bigchaindb/py-ipld/master.svg
@@ -13,7 +13,7 @@ py-ipld
 
 Status
 ------
-This is a Work-in-Progress. For TODOs, see: `#1 <https://github.com/bigchaindb/py-ipld/issues/1>`_
+For TODOs, see: `#1 <https://github.com/bigchaindb/py-ipld/issues/1>`
 
 
 Installation
@@ -21,7 +21,7 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install ipld  # (not yet)
+    $ pip install ipld
 
 
 Usage
