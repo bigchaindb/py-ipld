@@ -62,9 +62,9 @@ setup(
     ],
     install_requires=[
         'cbor==1.0.0',
-        'base58==0.2.2',
+        'base58==2.1.1',
         'pymultihash==0.8.2',
-        'multiaddr==0.0.2',
+        'multiaddr',
     ],
     setup_requires=['pytest-runner'],
     tests_require=tests_require,

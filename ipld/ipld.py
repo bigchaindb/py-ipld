@@ -43,7 +43,7 @@ def unmarshal(cbor_data):
     def transform(di):
         for k, v in di.items():
             if isinstance(v, Tag):
-                link = Multiaddr(bytes_addr=v.value)
+                link = Multiaddr(addr=v.value)
 
                 try:
                     # the __str__ method of Multiaddr could fail
