@@ -2,7 +2,7 @@ import pytest
 
 from cbor import dumps, Tag
 from ipld import LINK_TAG, marshal, multihash, unmarshal
-from multiaddr import Multiaddr
+from multiaddr import Multiaddr, exceptions
 
 
 def test_transform_dict_to_cbor():
@@ -112,27 +112,36 @@ def test_transform_cbor_with_link_to_dict():
     src = dumps({
         'num': 1,
         'hello': 'world',
-        'l1': Tag(LINK_TAG, 'takemedowntotheparadisecity'),
+        'l1': Tag(LINK_TAG, '/p2p/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
     }, sort_keys=True)
 
     expected = {
         'hello': 'world',
         'num': 1,
         'l1': {
-            '/': 'takemedowntotheparadisecity',
+            '/': '/p2p/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'
         },
     }
 
     assert unmarshal(src) == expected
 
+def test_transform_cbor_with_faulty_link_to_dict():
+    src = dumps({
+        'num': 1,
+        'hello': 'world',
+        'l1': Tag(LINK_TAG, 'takemedowntotheparadisecity')
+    }, sort_keys=True)
+
+    with pytest.raises(exceptions.StringParseError):
+        unmarshal(src)
 
 def test_transform_cbor_with_nested_link_to_dict():
     src = dumps({
         'num': 1,
         'hello': 'world',
-        'l1': Tag(LINK_TAG, 'takemedowntotheparadisecity'),
+        'l1': Tag(LINK_TAG, '/p2p/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4'),
         'secret': {
-            'l1': Tag(LINK_TAG, 'Ihhh ein Sekret!')
+            'l1': Tag(LINK_TAG, '/p2p/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4')
         },
     }, sort_keys=True)
 
@@ -140,11 +149,11 @@ def test_transform_cbor_with_nested_link_to_dict():
         'hello': 'world',
         'num': 1,
         'l1': {
-            '/': 'takemedowntotheparadisecity',
+            '/': '/p2p/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4',
         },
         'secret': {
             'l1': {
-                '/': 'Ihhh ein Sekret!',
+                '/': '/p2p/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4',
             },
         },
     }
